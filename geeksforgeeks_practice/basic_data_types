@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int BasicDataType(string s) {
+        const int digits_in_float = 7;
+        // code here
+        // Determine if it is a char
+        if (!std::isdigit(s.at(0)) && s.at(0) != '-' && s.at(0) != '.'){
+            return 1;
+        }
+        // determine if it is a integer
+        for (char& digit : s){
+            if (std::isdigit(digit) || (digit == '-')){
+                continue;
+            }
+            if(s.find('.')==string::npos) return sizeof(int);
+            if(s.find('.')!=string::npos){
+                int b=s.find('.');
+                int n=s.size();
+                if(n-b>=7) return sizeof(double);
+                else return sizeof(float);
+            }
+
+        }
+        return 4;
+    }
+};
